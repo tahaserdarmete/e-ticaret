@@ -26,4 +26,4 @@ A modern and user-friendly e-commerce application developed using React, Vite, R
 
 ## 📸 ScreenShot
 
-![E-Commerce Application](e-commerce.gif)
+<img src="e-ticaret.gif" />
