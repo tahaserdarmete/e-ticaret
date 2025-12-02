@@ -48,17 +48,31 @@ const cartSlice = createSlice({
         state.carts.push(action.payload);
         storeInLocalStorage(state.carts);
       }
+      
+      // itemCount ve totalAmount'u güncelle
+      state.totalAmount = state.carts.reduce((cartTotal, cartItem) => {
+        return (cartTotal += cartItem.price * cartItem.quantity);
+      }, 0);
+      state.itemCount = state.carts.length;
     },
 
     removeFromCart: (state, action) => {
       const tempCart = state.carts.filter((item) => item.id !== action.payload);
       state.carts = tempCart;
       storeInLocalStorage(state.carts);
+      
+      // itemCount ve totalAmount'u güncelle
+      state.totalAmount = state.carts.reduce((cartTotal, cartItem) => {
+        return (cartTotal += cartItem.price * cartItem.quantity);
+      }, 0);
+      state.itemCount = state.carts.length;
     },
 
     clearCart: (state) => {
       state.carts = [];
       storeInLocalStorage(state.carts);
+      state.itemCount = 0;
+      state.totalAmount = 0;
     },
 
     getCartTotal: (state) => {

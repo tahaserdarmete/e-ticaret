@@ -1,26 +1,25 @@
-import {BiSearch} from "react-icons/bi";
-import {AiOutlineHeart} from "react-icons/ai";
-import {SlBasket} from "react-icons/sl";
-import {useDispatch} from "react-redux";
 import {useEffect} from "react";
+import {AiOutlineHeart} from "react-icons/ai";
+import {BiSearch} from "react-icons/bi";
+import {SlBasket} from "react-icons/sl";
+import {useDispatch, useSelector} from "react-redux";
 import {getCartTotal} from "../../../redux/cartSlice";
-import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 const NavbarRight = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {itemCount} = useSelector((state) => state.carts);
+  const dispatch = useDispatch();
+  const {itemCount, carts} = useSelector((state) => state.carts);
 
   useEffect(() => {
     dispatch(getCartTotal());
-  }, [dispatch]);
+  }, [dispatch, carts]);
 
   return (
-    <div className="flex items-center gap-8">
-      <div className="flex items-center border border-gray-200 p-3 rounded-full bg-gray-200">
+    <div className="flex items-center gap-8 mt-8">
+      <div className="flex items-center  p-3 rounded-full bg-gray-200">
         <input
-          className="bg-gray-200 outline-none"
+          className="bg-gray-200  outline-none "
           type="text"
           placeholder="Arama Yapınız..."
         />
@@ -28,7 +27,7 @@ const NavbarRight = () => {
       </div>
       <AiOutlineHeart size={28} />
       <div onClick={() => navigate("cart")} className="relative">
-        <div className="absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center">
+        <div className="absolute -top-3 -right-3 flex items-center justify-center bg-red-500 text-white rounded-full w-5 h-5">
           {itemCount}
         </div>
         <SlBasket size={28} />

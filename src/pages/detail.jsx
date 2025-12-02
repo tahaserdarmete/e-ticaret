@@ -1,10 +1,9 @@
 import {useEffect} from "react";
-import {useSelector} from "react-redux";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {getDetailProduct} from "../redux/productSlice";
-import DetailComp from "../components/detail/detailComp";
-import Loading from "../components/loading";
+import DetailComp from "../components/detail/DetailComp";
+import Loading from "../components/Loading";
 
 const Detail = () => {
   const {id} = useParams();

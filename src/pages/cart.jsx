@@ -12,7 +12,7 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(getCartTotal());
-  }, [dispatch]);
+  }, [dispatch, carts]);
 
   return (
     <div>
